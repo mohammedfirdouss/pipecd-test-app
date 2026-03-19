@@ -1,7 +1,7 @@
 apiVersion: pipecd.dev/v1beta1
 kind: KubernetesApp
 spec:
-  name: canary-clean-no-service #
+  name: canary-clean-no-service 
   labels:
     env: test
   description: Test canary clean without service
