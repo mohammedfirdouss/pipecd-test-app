@@ -1,0 +1,19 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: canary-clean-no-service
+  labels:
+    env: test
+  description: Test canary clean without service
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 1
+      - name: K8S_CANARY_CLEAN
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+        kubectlVersion: 1.32.2
