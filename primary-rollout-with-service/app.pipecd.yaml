@@ -1,0 +1,21 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: primary-rollout-with-service
+  labels:
+    env: test
+  description: Test primary rollout with service creation
+  pipeline:
+    stages:
+      - name: K8S_PRIMARY_ROLLOUT
+        with:
+          createService: true
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+          - service.yaml
+        kubectlVersion: 1.32.2
+      service:
+        name: simple
