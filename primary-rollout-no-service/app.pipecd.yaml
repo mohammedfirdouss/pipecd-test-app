@@ -1,0 +1,16 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: primary-rollout-no-service
+  labels:
+    env: test
+  description: Test primary rollout without service creation
+  pipeline:
+    stages:
+      - name: K8S_PRIMARY_ROLLOUT
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+        kubectlVersion: 1.32.2
