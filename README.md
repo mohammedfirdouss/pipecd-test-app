@@ -19,8 +19,6 @@ Each folder is a self-contained app registered in PipeCD pointing to a specific 
 
 ## Usage
 
-See `manual_test.md` in the main pipecd repo for full setup and test instructions.
-
 Each folder contains:
 - `app.pipecd.yaml` — PipeCD app config with the pipeline stages
 - `deployment.yaml` — Kubernetes Deployment manifest
