@@ -1,0 +1,21 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: baseline-test
+  labels:
+    env: test
+  description: Test baseline rollout alongside canary
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 1
+      - name: K8S_BASELINE_ROLLOUT
+        with:
+          replicas: 1
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+        kubectlVersion: 1.32.2
