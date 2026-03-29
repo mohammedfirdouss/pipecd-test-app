@@ -21,3 +21,4 @@ spec:
         manifests:
           - deployment.yaml
         kubectlVersion: 1.32.2
+
