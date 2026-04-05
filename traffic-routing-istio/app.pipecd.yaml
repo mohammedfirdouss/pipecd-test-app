@@ -4,21 +4,26 @@ spec:
   name: traffic-routing-istio
   labels:
     env: test
-  description: Test traffic routing with Istio method (requires Istio installed in cluster)
+  description: Test Istio three-way traffic split (primary/canary/baseline) with progressive routing
   pipeline:
     stages:
       - name: K8S_CANARY_ROLLOUT
         with:
-          replicas: 50%
+          replicas: 1
+      - name: K8S_BASELINE_ROLLOUT
+        with:
+          replicas: 1
       - name: K8S_TRAFFIC_ROUTING
         with:
           primary: 80
-          canary: 20
+          canary: 10
+          baseline: 10
       - name: K8S_TRAFFIC_ROUTING
         with:
           primary: 100
       - name: K8S_PRIMARY_ROLLOUT
       - name: K8S_CANARY_CLEAN
+      - name: K8S_BASELINE_CLEAN
   plugins:
     kubernetes_multicluster:
       input:
