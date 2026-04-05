@@ -12,11 +12,12 @@ spec:
           replicas: 50%
       - name: K8S_TRAFFIC_ROUTING
         with:
-          canary: 30
-      - name: K8S_PRIMARY_ROLLOUT
+          primary: 80
+          canary: 20
       - name: K8S_TRAFFIC_ROUTING
         with:
           primary: 100
+      - name: K8S_PRIMARY_ROLLOUT
       - name: K8S_CANARY_CLEAN
   plugins:
     kubernetes_multicluster:
