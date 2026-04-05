@@ -6,7 +6,14 @@ spec:
   hosts:
   - simple
   http:
-  - route:
+  - name: primary-route
+    route:
+    - destination:
+        host: simple
+        subset: primary
+      weight: 100
+  - name: admin-route
+    route:
     - destination:
         host: simple
         subset: primary

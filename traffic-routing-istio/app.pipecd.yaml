@@ -39,3 +39,5 @@ spec:
         istio:
           virtualService:
             name: simple-vs
+          editableRoutes:
+            - primary-route
