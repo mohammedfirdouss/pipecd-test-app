@@ -1,0 +1,32 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: traffic-routing-podselector
+  labels:
+    env: test
+  description: Test traffic routing with PodSelector method (switches Service selector to canary/primary variant)
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 50%
+          createService: true
+      - name: K8S_TRAFFIC_ROUTING
+        with:
+          canary: 100
+      - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_TRAFFIC_ROUTING
+        with:
+          primary: 100
+      - name: K8S_CANARY_CLEAN
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+          - service.yaml
+        kubectlVersion: 1.32.2
+      service:
+        name: simple
+      trafficRouting:
+        method: podselector
