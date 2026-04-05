@@ -1,0 +1,35 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: traffic-routing-istio
+  labels:
+    env: test
+  description: Test traffic routing with Istio method (requires Istio installed in cluster)
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 50%
+      - name: K8S_TRAFFIC_ROUTING
+        with:
+          canary: 30
+      - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_TRAFFIC_ROUTING
+        with:
+          primary: 100
+      - name: K8S_CANARY_CLEAN
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+          - service.yaml
+          - virtualservice.yaml
+        kubectlVersion: 1.32.2
+      service:
+        name: simple
+      trafficRouting:
+        method: istio
+        istio:
+          virtualService:
+            name: simple-vs
