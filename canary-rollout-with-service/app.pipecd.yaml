@@ -1,7 +1,7 @@
 apiVersion: pipecd.dev/v1beta1
 kind: KubernetesApp
 spec:
-  name: canary-with-service
+  name: canary-rollout-with-service
   labels:
     env: test
   description: Test canary rollout with service creation

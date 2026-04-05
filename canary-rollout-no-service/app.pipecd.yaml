@@ -1,7 +1,7 @@
 apiVersion: pipecd.dev/v1beta1
 kind: KubernetesApp
 spec:
-  name: canary-no-service
+  name: canary-rollout-no-service
   labels:
     env: test
   description: Test canary rollout without service creation

@@ -1,7 +1,7 @@
 apiVersion: pipecd.dev/v1beta1
 kind: KubernetesApp
 spec:
-  name: baseline-clean-test
+  name: full-pipeline
   labels:
     env: test
   description: Test full canary + baseline + clean pipeline

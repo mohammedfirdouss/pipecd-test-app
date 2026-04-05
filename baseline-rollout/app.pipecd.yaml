@@ -1,7 +1,7 @@
 apiVersion: pipecd.dev/v1beta1
 kind: KubernetesApp
 spec:
-  name: baseline-test
+  name: baseline-rollout
   labels:
     env: test
   description: Test baseline rollout alongside canary
