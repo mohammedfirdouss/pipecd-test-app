@@ -19,3 +19,4 @@ spec:
         image: ghcr.io/pipe-cd/helloworld:v0.32.0
         ports:
         - containerPort: 9085
+
