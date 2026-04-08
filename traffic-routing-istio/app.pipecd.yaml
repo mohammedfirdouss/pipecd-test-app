@@ -18,10 +18,10 @@ spec:
           primary: 80
           canary: 10
           baseline: 10
+      - name: K8S_PRIMARY_ROLLOUT
       - name: K8S_TRAFFIC_ROUTING
         with:
           primary: 100
-      - name: K8S_PRIMARY_ROLLOUT
       - name: K8S_CANARY_CLEAN
       - name: K8S_BASELINE_CLEAN
   plugins:
