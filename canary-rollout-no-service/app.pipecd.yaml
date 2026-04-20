@@ -10,9 +10,6 @@ spec:
       - name: K8S_CANARY_ROLLOUT
         with:
           replicas: 1
-      - name: WAIT_APPROVAL
-      - name: K8S_PRIMARY_ROLLOUT
-      - name: K8S_CANARY_CLEAN
   plugins:
     kubernetes_multicluster:
       input:
