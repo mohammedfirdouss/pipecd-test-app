@@ -5,6 +5,7 @@ on:
     branches:
       - master
     types: [opened, synchronize, reopened]
+  # Note: issue_comment-triggered workflows must exist on the default branch.
   issue_comment:
     types: [created]
 
