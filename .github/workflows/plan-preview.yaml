@@ -2,6 +2,9 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  pull-requests: write
+
 jobs:
   plan-preview:
     runs-on: ubuntu-latest
