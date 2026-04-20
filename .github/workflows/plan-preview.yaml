@@ -6,7 +6,7 @@ jobs:
   plan-preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: pipe-cd/actions-plan-preview@v1
+      - uses: pipe-cd/actions-plan-preview@v1.8.0
         with:
           address: demo.pipecd.dev:443
           api-key: ${{ secrets.PIPECD_API_KEY }}
