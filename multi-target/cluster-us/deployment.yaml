@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-target-us
+  labels:
+    app: multi-target-us
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi-target-us
+  template:
+    metadata:
+      labels:
+        app: multi-target-us
+    spec:
+      containers:
+      - name: helloworld
+        image: ghcr.io/pipe-cd/helloworld:v0.37.0
+        args:
+          - server
+        ports:
+        - containerPort: 9085

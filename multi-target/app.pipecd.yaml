@@ -1,0 +1,26 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: multi-target
+  labels:
+    env: test
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 1
+      - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_CANARY_CLEAN
+  plugins:
+    kubernetes_multicluster:
+      input:
+        multiTargets:
+          - target:
+              name: cluster-eu
+            manifests:
+              - cluster-eu/deployment.yaml
+          - target:
+              name: cluster-us
+            manifests:
+              - cluster-us/deployment.yaml
+        kubectlVersion: 1.32.2
