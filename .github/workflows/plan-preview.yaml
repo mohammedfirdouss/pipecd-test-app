@@ -10,3 +10,4 @@ jobs:
         with:
           address: demo.pipecd.dev:443
           api-key: ${{ secrets.PIPECD_API_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
